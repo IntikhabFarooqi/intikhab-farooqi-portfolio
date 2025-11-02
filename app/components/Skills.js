@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import { font } from './font/font'
 import { BackgroundBeams } from './ui/background-beams'
-import { TextHoverEffect } from './ui/text-hover-effect'
 
 const Skills = () => {
   const [isClient, setIsClient] = useState(false);
@@ -11,19 +10,22 @@ const Skills = () => {
     setIsClient(true);
   }, []);
   const skills = [
-    { name: 'React', color: 'text-blue-400' },
-    { name: 'Next.js', color: 'text-white' },
-    { name: 'Express', color: 'text-green-400' },
-    { name: 'Node.Js', color: 'text-green-500' },
-    { name: 'C#', color: 'text-purple-500' },
-    { name: '.NET', color: 'text-purple-400' },
-    { name: 'Angular', color: 'text-red-500' },
-    { name: 'MySQL', color: 'text-blue-600' },
-    { name: 'AWS', color: 'text-orange-400' },
-    { name: 'Solidity', color: 'text-gray-300' },
-    { name: 'R. Native', color: 'text-blue-400' },
-    { name: 'Swift', color: 'text-orange-500' },
-    { name: 'Rust', color: 'text-orange-600' }
+    { name: 'REACT', color: 'text-white' },
+    { name: 'NEXT.JS', color: 'text-white' },
+    { name: 'EXPRESS', color: 'text-white' },
+    { name: 'NODE.JS', color: 'text-white' },
+    { name: 'C#', color: 'text-white' },
+    { name: '.NET', color: 'text-white' },
+    { name: 'ANGULAR', color: 'text-white' },
+    { name: 'MYSQL', color: 'text-white' },
+    { name: 'AWS', color: 'text-white' },
+    { name: 'SOLIDITY', color: 'text-white' },
+    { name: 'SWIFT', color: 'text-white' },
+    { name: 'REACT NATIVE', color: 'text-white' },
+    { name: 'PYTHON', color: 'text-white' },
+    { name: 'DOCKER', color: 'text-white' },
+    { name: 'PYTORCH', color: 'text-white' },
+    { name: 'RUST', color: 'text-white' }
   ]
 
   return (
@@ -41,7 +43,9 @@ const Skills = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {skills.map((skill, index) => (
               <div key={index} className="h-32 w-full flex items-center justify-center">
-                <TextHoverEffect text={skill.name} duration={0.5} />
+                <span className={`${skill.color} text-4xl font-extrabold`}>
+                  {skill.name}
+                </span>
               </div>
             ))}
           </div>
