@@ -47,20 +47,20 @@ const Work = () => {
   return (
     <div id="work" className={`${font.className} relative min-h-screen bg-black overflow-hidden`}>
       <BackgroundBeams />
-      <div className="relative z-10 pt-12 px-20 text-white">
-        <div>
+      <div className="relative z-10 pt-12 px-4 md:px-20 text-white">
+        <div className='text-sm md:text-base'>
             Employment History
         </div>
-        <div className='text-5xl font-bold mt-2 mb-2'>
+        <div className='text-3xl md:text-5xl font-bold mt-2 mb-2'>
             Places Where I've Worked
         </div>
-        <div className='mb-12'>
+        <div className='mb-12 text-sm md:text-base'>
             Hint: drag the cards 😉
         </div>
         
-                <div className="relative w-full min-h-[80vh] mt-20 flex justify-center items-center pb-20">
+                <div className="relative w-full min-h-[80vh] mt-10 md:mt-20 flex justify-center items-center pb-10 md:pb-20">
           {isClient && (
-            <DraggableCardContainer className="relative w-[800px] h-[600px]">
+            <DraggableCardContainer className="relative w-full max-w-[800px] h-[500px] md:h-[600px]">
               {workExperience.map((work, index) => {
                 const scatteredPositions = [
                   { top: '50px', left: '0px', rotate: '-25deg', zIndex: 5 },
@@ -70,28 +70,59 @@ const Work = () => {
                   { top: '40px', left: '600px', rotate: '25deg', zIndex: 1 }
                 ];
                 
+                const scatteredPositionsMobile = [
+                  { top: '30px', left: '0px', rotate: '-15deg', zIndex: 5 },
+                  { top: '50px', left: '80px', rotate: '-8deg', zIndex: 3 },
+                  { top: '40px', left: '160px', rotate: '0deg', zIndex: 4 },
+                  { top: '70px', left: '240px', rotate: '8deg', zIndex: 2 },
+                  { top: '20px', left: '320px', rotate: '15deg', zIndex: 1 }
+                ];
+                
                 return (
-                  <div
-                    key={index}
-                    className="absolute"
-                    style={{
-                      top: scatteredPositions[index].top,
-                      left: scatteredPositions[index].left,
-                      transform: `rotate(${scatteredPositions[index].rotate})`,
-                      zIndex: scatteredPositions[index].zIndex
-                    }}
-                  >
-                    <DraggableCardBody 
-                      className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 w-[250px]"
+                  <React.Fragment key={index}>
+                    {/* Desktop version */}
+                    <div
+                      className="absolute hidden md:block"
+                      style={{
+                        top: scatteredPositions[index].top,
+                        left: scatteredPositions[index].left,
+                        transform: `rotate(${scatteredPositions[index].rotate})`,
+                        zIndex: scatteredPositions[index].zIndex
+                      }}
                     >
-                      <div className="text-white">
-                        <h3 className="text-xl font-bold text-fuchsia-400 mb-2">{work.company}</h3>
-                        <h4 className="text-lg font-semibold mb-2">{work.position}</h4>
-                        <p className="text-sm text-gray-400 mb-4">{work.duration}</p>
-                        <p className="text-sm leading-relaxed">{work.description}</p>
-                      </div>
-                    </DraggableCardBody>
-                  </div>
+                      <DraggableCardBody 
+                        className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 w-[250px]"
+                      >
+                        <div className="text-white">
+                          <h3 className="text-xl font-bold text-fuchsia-400 mb-2">{work.company}</h3>
+                          <h4 className="text-lg font-semibold mb-2">{work.position}</h4>
+                          <p className="text-sm text-gray-400 mb-4">{work.duration}</p>
+                          <p className="text-sm leading-relaxed">{work.description}</p>
+                        </div>
+                      </DraggableCardBody>
+                    </div>
+                    {/* Mobile version */}
+                    <div
+                      className="absolute md:hidden"
+                      style={{
+                        top: scatteredPositionsMobile[index].top,
+                        left: scatteredPositionsMobile[index].left,
+                        transform: `rotate(${scatteredPositionsMobile[index].rotate})`,
+                        zIndex: scatteredPositionsMobile[index].zIndex
+                      }}
+                    >
+                      <DraggableCardBody 
+                        className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 w-[180px]"
+                      >
+                        <div className="text-white">
+                          <h3 className="text-base font-bold text-fuchsia-400 mb-1">{work.company}</h3>
+                          <h4 className="text-sm font-semibold mb-1">{work.position}</h4>
+                          <p className="text-xs text-gray-400 mb-2">{work.duration}</p>
+                          <p className="text-xs leading-relaxed">{work.description}</p>
+                        </div>
+                      </DraggableCardBody>
+                    </div>
+                  </React.Fragment>
                 );
               })}
             </DraggableCardContainer>
