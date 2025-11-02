@@ -1,9 +1,20 @@
+"use client";
 import React from 'react'
 import Nav from './Nav'
 import { font } from './font/font'
 import { AuroraBackground } from './ui/aurora-background'
 
 const Hero = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <AuroraBackground className="bg-black">
       <div className={`${font.className} min-h-screen relative w-[100%]`}>
@@ -15,7 +26,9 @@ const Hero = () => {
             <p className='max-w-xl text-sm md:text-base'>I'm a full stack engineer with over 10 years of experience in the industry with a passion for building web and mobile applications. I'm also a blockchain developer and an AI engineer.</p>
             <div className='flex space-x-4'>
 
-            <button className='bg-gradient-to-r from-white via-fuchsia-300/90 to-indigo-300/90
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className='bg-gradient-to-r from-white via-fuchsia-300/90 to-indigo-300/90
                 bg-[length:200%_200%] bg-[position:0%_50%]
                 transition-all duration-500 ease-out
                 hover:bg-[position:100%_50%]
